@@ -8,6 +8,9 @@ import quick_sort;
 import shell_sort;
 import heap_sort;
 
+import adj_matrix;
+import adj_list;
+
 namespace {
   // CHANGED: the parameter is "a vector of Element". The caller passes a std::vector<int>, so Element becomes int.
   // Before it was std::span<Element>, and a std::array or a std::vector is not a span, so Element could not be found.
@@ -52,4 +55,20 @@ int main() {
   test_sort("Quick sort", numbers, [](auto array, auto compare) { sorts::quick_sort(array, compare); });
   test_sort("Shell sort", numbers, [](auto array, auto compare) { sorts::shell_sort(array, compare); });
   test_sort("Heap sort", numbers, [](auto array, auto compare) { sorts::heap_sort(array, compare); });
+
+  //std::vector<std::pair<int,int>> pairs{{0,1}, {0,3}, {1,2}, {1,4}, {3,4}};
+  //auto matrix = adj_matrix::adj_matrix(5, pairs, false);
+  auto matrix = graphs::gen_adj_matrix(15, true, false);
+
+  std::println("Matrix");
+  for (const auto& row : matrix) {
+    std::println("  {}", row);
+  }
+
+
+  auto list = adj_list::gen_adj_list(5);
+  std::println("List");
+  for (int v = 0; v < std::ssize(list); v++) {
+    std::println("  {}: {}", v, list[v]);
+  }
 }
