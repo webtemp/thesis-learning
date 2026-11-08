@@ -8,12 +8,12 @@ import quick_sort;
 import shell_sort;
 import heap_sort;
 
+
 import adj_matrix;
 import adj_list;
+import bfs;
 
 namespace {
-  // CHANGED: the parameter is "a vector of Element". The caller passes a std::vector<int>, so Element becomes int.
-  // Before it was std::span<Element>, and a std::array or a std::vector is not a span, so Element could not be found.
   template <typename Element>
   void test_sort(std::string_view algorithm_name, const std::vector<Element>& array, auto sort) {
     std::vector<Element> ascending(std::from_range, array);
@@ -65,10 +65,10 @@ int main() {
     std::println("  {}", row);
   }
 
-
-  auto list = adj_list::gen_adj_list(5);
-  std::println("List");
-  for (int v = 0; v < std::ssize(list); v++) {
-    std::println("  {}: {}", v, list[v]);
+  auto graph = adj_list::gen_adj_list(5);
+  std::println("Graph");
+  for (int v = 0; v < std::ssize(graph); v++) {
+    std::println("  {}: {}", v, graph[v]);
   }
+  std::println("BFS: {}", graphs::bfs(graph, 0));
 }
