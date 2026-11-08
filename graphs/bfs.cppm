@@ -1,14 +1,15 @@
 export module bfs;
 
 import std;
+import graph_types;
 
 export namespace graphs {
-  std::vector<int> bfs(const std::vector<std::vector<int>>& graph, int start) {
-    std::queue<int> pending;
-    std::vector<bool> discovered(graph.size(), false);
-    std::vector<int> order;
+  IntVector bfs(const AdjacencyList &graph, const int start) {
+    IntQueue pending;
+    IntVector order;
+    BoolVector visited(graph.size(), false);
 
-    discovered[start] = true;
+    visited[start] = true;
     pending.push(start);
 
     while (!pending.empty()) {
@@ -17,8 +18,8 @@ export namespace graphs {
       order.push_back(top);
 
       for (int n : graph[top]) {
-        if (!discovered[n]) {
-          discovered[n] = true;
+        if (!visited[n]) {
+          visited[n] = true;
           pending.push(n);
         }
       }

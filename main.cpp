@@ -12,6 +12,7 @@ import heap_sort;
 import adj_matrix;
 import adj_list;
 import bfs;
+import dfs;
 
 namespace {
   template <typename Element>
@@ -58,17 +59,19 @@ int main() {
 
   //std::vector<std::pair<int,int>> pairs{{0,1}, {0,3}, {1,2}, {1,4}, {3,4}};
   //auto matrix = adj_matrix::adj_matrix(5, pairs, false);
-  auto matrix = graphs::gen_adj_matrix(15, true, false);
+  // auto matrix = graphs::gen_adj_matrix(15, true, false);
+  //
+  // std::println("Matrix");
+  // for (const auto& row : matrix) {
+  //   std::println("  {}", row);
+  // }
 
-  std::println("Matrix");
-  for (const auto& row : matrix) {
-    std::println("  {}", row);
-  }
-
-  auto graph = adj_list::gen_adj_list(5);
+  auto graph = adj_list::gen_adj_list(10);
   std::println("Graph");
   for (int v = 0; v < std::ssize(graph); v++) {
     std::println("  {}: {}", v, graph[v]);
   }
+  std::println();
   std::println("BFS: {}", graphs::bfs(graph, 0));
+  std::println("DFS: {}", graphs::dfs(graph, 0));
 }
