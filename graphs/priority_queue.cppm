@@ -11,7 +11,7 @@ export namespace graphs {
         Comparator compare;
 
     public:
-        PriorityQueue(const int size = 0, Comparator comparator = {}) {
+        PriorityQueue(std::size_t size = 0, Comparator comparator = {}) {
             if (size > 0) {
                 container.reserve(size);
             }
@@ -38,12 +38,13 @@ export namespace graphs {
             return container.empty();
         }
 
-        Element top() const {
+        const Element& top() const {
+            // if (container.empty()) {} ???
             return container.front();
         }
 
         void push(Element value) {
-            container.push_back(value);
+            container.push_back(std::move(value));
             auto item_index = container.size() - 1;
             while (item_index > 0) {
                 const auto parent_index = (item_index - 1) /2;
@@ -59,13 +60,14 @@ export namespace graphs {
         }
 
         Element pop() {
-            const Element value = container.front();
+            Element value = std::move(container.front());
             if (container.size() == 1) {
                 container.pop_back();
                 return value;
             }
+            // else if (container.size() == 0) {} ???
 
-            container[0] = container.back();
+            container[0] = std::move(container.back());
             container.pop_back();
 
             graphs::heap_sift_down(std::span<Element>{container}, 0, compare);
