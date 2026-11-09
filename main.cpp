@@ -13,6 +13,7 @@ import adj_matrix;
 import adj_list;
 import bfs;
 import dfs;
+import dijkstra;
 
 namespace {
   template <typename Element>
@@ -74,4 +75,13 @@ int main() {
   std::println();
   std::println("BFS: {}", graphs::bfs(graph, 0));
   std::println("DFS: {}", graphs::dfs(graph, 0));
+
+  auto weighted_graph = adj_list::gen_weighted_adj_list(20, true);
+  std::println("Weighted Graph");
+  for (int v = 0; v < std::ssize(weighted_graph); v++) {
+    std::println("  {}: {}", v, weighted_graph[v]);
+  }
+  std::println();
+  int random_start = graphs::rand_int(0, std::ssize(weighted_graph) - 1);
+  std::println("Djikstra from point {} {}", random_start, graphs::dijkstra(weighted_graph, random_start));
 }

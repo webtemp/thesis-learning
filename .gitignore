@@ -3,3 +3,5 @@ compile_commands.json
 gcm.cache/
 build-*/
 .clangd
+.idea/
+cmake-build-*/

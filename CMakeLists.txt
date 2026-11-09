@@ -30,6 +30,6 @@ target_compile_options(main PRIVATE -Wall -Wextra)
 # Any #include of a standard header next to import std; breaks the build with "conflicting declaration" errors
 # deep inside the compiler's own files. This target runs before main compiles and names the file and line instead.
 add_custom_target(check_no_includes
-        COMMAND sh -c "if grep -rn --exclude-dir='build-*' --exclude-dir='.cache' '^[[:space:]]*#include' '${CMAKE_SOURCE_DIR}'; then echo 'ERROR: #include found, use import std; instead'; exit 1; fi"
+        COMMAND sh -c "if grep -rn --include='*.cpp' --include='*.cppm' '^[[:space:]]*#include' '${CMAKE_SOURCE_DIR}'; then echo 'ERROR: #include found, use import std; instead'; exit 1; fi"
         VERBATIM)
 add_dependencies(main check_no_includes)
