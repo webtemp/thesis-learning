@@ -13,8 +13,7 @@ export namespace graphs {
     pq.push({0, start});// distance to start is 0
 
     while (!pq.empty()) {
-      auto [d, u] = pq.top();
-      pq.pop();
+      auto [d, u] = pq.pop();// My implementation of pq returns the item with pop so no need for top();
 
       if (d > distances[u]) {
         continue;
