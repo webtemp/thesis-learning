@@ -2,13 +2,14 @@ export module dijkstra;
 
 import std;
 import graph_types;
+import priority_queue;
 
 export namespace graphs {
   IntVector dijkstra(const WeightedAdjacencyList &graph, const int start) {
     IntVector distances(graph.size(), INF);
     distances[start] = 0;
 
-    std::priority_queue<Pair, std::vector<Pair>, std::greater<>> pq;
+    PriorityQueue<Pair, std::greater<>> pq;
     pq.push({0, start});// distance to start is 0
 
     while (!pq.empty()) {
