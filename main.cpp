@@ -58,15 +58,6 @@ int main() {
   test_sort("Shell sort", numbers, [](auto array, auto compare) { sorts::shell_sort(array, compare); });
   test_sort("Heap sort", numbers, [](auto array, auto compare) { sorts::heap_sort(array, compare); });
 
-  //std::vector<std::pair<int,int>> pairs{{0,1}, {0,3}, {1,2}, {1,4}, {3,4}};
-  //auto matrix = adj_matrix::adj_matrix(5, pairs, false);
-  // auto matrix = graphs::gen_adj_matrix(15, true, false);
-  //
-  // std::println("Matrix");
-  // for (const auto& row : matrix) {
-  //   std::println("  {}", row);
-  // }
-
   auto graph = adj_list::gen_adj_list(10);
   std::println("Graph");
   for (int v = 0; v < std::ssize(graph); v++) {
@@ -83,5 +74,6 @@ int main() {
   }
   std::println();
   int random_start = graphs::rand_int(0, std::ssize(weighted_graph) - 1);
-  std::println("Djikstra from point {} {}", random_start, graphs::dijkstra(weighted_graph, random_start));
+  std::println("Djikstra from point {} {}", 0, graphs::dijkstra(weighted_graph, 0));
+  std::println("Djikstra from random point {} {}", random_start, graphs::dijkstra(weighted_graph, random_start));
 }

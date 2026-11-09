@@ -8,9 +8,8 @@ export namespace graphs {
     IntVector distances(graph.size(), INF);
     distances[start] = 0;
 
-    std::priority_queue<std::pair<int,int>, std::vector<std::pair<int,int>>, std::greater<>> pq;
+    std::priority_queue<Pair, std::vector<Pair>, std::greater<>> pq;
     pq.push({0, start});// distance to start is 0
-
 
     while (!pq.empty()) {
       auto [d, u] = pq.top();
